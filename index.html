@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Gmap example</title>
+	
+	<meta name="description" content="gmap">
+	<meta name="author" content="Predrag Jovicic">
+	<link rel="icon" type="image/png" href="" />
+
+	<style>
+		html,body{
+			height:100%;
+			margin:0px;
+		}
+		#map{	
+			width:100%;
+			height:100%;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="map"></div>
+
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script src="dist/gmaps.js"></script>
+<script src="dist/proj4.js"></script>
+<script>
+
+	function getData(events){
+
+		events.push({zipcode:75211,city:"DALLAS",state:"TX",x_coordinate:2463017.564,y_coordinate:6959380.819,dateofoccurrence:"11/20/16 0:00",type:"A"});
+		events.push({zipcode:75211,city:"DALLAS",state:"TX",x_coordinate:2456852.474,y_coordinate:6959267.606,dateofoccurrence:"1/16/16 0:00",type:"A"});
+		events.push({zipcode:75229,city:"DALLAS",state:"TX",x_coordinate:2464150.182,y_coordinate:7007380.739,dateofoccurrence:"11/29/15 0:00",type:"C"});
+		events.push({zipcode:75229,city:"DALLAS",state:"TX",x_coordinate:2473157.409,y_coordinate:7009895.175,dateofoccurrence:"11/28/15 0:00",type:"A"});
+		events.push({zipcode:75243,city:"DALLAS",state:"TX",x_coordinate:2506562.141,y_coordinate:7018203.975,dateofoccurrence:"11/21/16 0:00",type:"A"});
+		events.push({zipcode:75215,city:"DALLAS",state:"TX",x_coordinate:2502855.824,y_coordinate:6965061.359,dateofoccurrence:"11/21/16 0:00",type:"B"});
+		events.push({zipcode:75220,city:"DALLAS",state:"TX",x_coordinate:2466569.415,y_coordinate:6996854.77,dateofoccurrence:"11/21/16 0:00",type:"B"});
+		events.push({zipcode:75206,city:"DALLAS",state:"TX",x_coordinate:2499820.099,y_coordinate:6992842.028,dateofoccurrence:"11/30/15 0:00",type:"B"});
+		events.push({zipcode:75241,city:"DALLAS",state:"TX",x_coordinate:2496575.268,y_coordinate:6931934.441,dateofoccurrence:"11/30/15 0:00",type:"A"});
+		events.push({zipcode:75217,city:"DALLAS",state:"TX",x_coordinate:2527237.23,y_coordinate:6958463.617,dateofoccurrence:"11/21/16 0:00",type:"A"});
+		events.push({zipcode:75208,city:"DALLAS",state:"TX",x_coordinate:2481775.402,y_coordinate:6959614.549,dateofoccurrence:"7/27/17 0:00",type:"A"});
+		events.push({zipcode:75208,city:"DALLAS",state:"TX",x_coordinate:2481775.402,y_coordinate:6959614.549,dateofoccurrence:"7/27/17 0:00",type:"B"});
+		events.push({zipcode:75220,city:"DALLAS",state:"TX",x_coordinate:2460500.253,y_coordinate:7001459.478,dateofoccurrence:"9/24/17 0:00",type:"A"});
+		events.push({zipcode:75232,city:"DALLAS",state:"TX",x_coordinate:2474255.336,y_coordinate:6921526.75,dateofoccurrence:"11/30/15 0:00",type:"B"});
+		events.push({zipcode:75231,city:"DALLAS",state:"TX",x_coordinate:2499660.427,y_coordinate:7003059.427,dateofoccurrence:"11/23/16 0:00",type:"B"});
+		events.push({zipcode:75240,city:"DALLAS",state:"TX",x_coordinate:2499656.055,y_coordinate:7023803.334,dateofoccurrence:"11/22/16 0:00",type:"B"});
+		events.push({zipcode:75227,city:"DALLAS",state:"TX",x_coordinate:2521821.08,y_coordinate:6960213.481,dateofoccurrence:"12/2/15 0:00",type:"A"});
+		events.push({zipcode:75212,city:"DALLAS",state:"TX",x_coordinate:2467212.884,y_coordinate:6970041.785,dateofoccurrence:"12/2/15 0:00",type:"A"});
+		events.push({zipcode:75204,city:"DALLAS",state:"TX",x_coordinate:2493976.37,y_coordinate:6980148.15,dateofoccurrence:"11/21/16 0:00",type:"A"});
+		events.push({zipcode:75227,city:"DALLAS",state:"TX",x_coordinate:2537217.48,y_coordinate:6965185.53,dateofoccurrence:"11/22/16 0:00",type:"B"});
+		events.push({zipcode:75216,city:"DALLAS",state:"TX",x_coordinate:2500165.199,y_coordinate:6940007.488,dateofoccurrence:"11/22/16 0:00",type:"A"});
+		events.push({zipcode:75216,city:"DALLAS",state:"TX",x_coordinate:2496911.883,y_coordinate:6938020.419,dateofoccurrence:"11/23/16 0:00",type:"B"});
+		events.push({zipcode:75228,city:"DALLAS",state:"TX",x_coordinate:2525703.174,y_coordinate:6975960.542,dateofoccurrence:"11/23/16 0:00",type:"A"});
+		events.push({zipcode:75228,city:"DALLAS",state:"TX",x_coordinate:2521115.936,y_coordinate:6983034.011,dateofoccurrence:"1/17/15 0:00",type:"C"});
+		events.push({zipcode:75220,city:"DALLAS",state:"TX",x_coordinate:2464285.179,y_coordinate:7000137.569,dateofoccurrence:"11/23/16 0:00",type:"A"});
+		events.push({zipcode:75228,city:"DALLAS",state:"TX",x_coordinate:2532165.811,y_coordinate:6994452.369,dateofoccurrence:"11/22/16 0:00",type:"C"});
+		events.push({zipcode:75217,city:"DALLAS",state:"TX",x_coordinate:2534081.846,y_coordinate:6954881.514,dateofoccurrence:"11/24/16 0:00",type:"C"});
+		events.push({zipcode:75228,city:"DALLAS",state:"TX",x_coordinate:2531686.547,y_coordinate:6983664.845,dateofoccurrence:"11/25/16 0:00",type:"A"});
+		events.push({zipcode:75212,city:"DALLAS",state:"TX",x_coordinate:2459817.352,y_coordinate:6971454.996,dateofoccurrence:"12/3/15 0:00",type:"C"});
+		events.push({zipcode:75220,city:"DALLAS",state:"TX",x_coordinate:2470535.957,y_coordinate:7000926.839,dateofoccurrence:"11/25/16 0:00",type:"A"});
+		events.push({zipcode:75228,city:"DALLAS",state:"TX",x_coordinate:2531617.436,y_coordinate:6986626.106,dateofoccurrence:"12/3/15 0:00",type:"C"});
+		events.push({zipcode:75228,city:"DALLAS",state:"TX",x_coordinate:2531686.547,y_coordinate:6983664.845,dateofoccurrence:"11/25/16 0:00",type:"A"});
+		events.push({zipcode:75202,city:"DALLAS",state:"TX",x_coordinate:2489807.043,y_coordinate:6972793.145,dateofoccurrence:"1/1/15 0:00",type:"C"});
+
+		return events;
+	}
+
+	var map = document.getElementById("map");  
+	var events = [];
+	var maplat = 32.7933629, maplong = -96.78872019999997, mapZoom = 11;
+	
+	events = getData(events);
+	
+	proj4.defs('EPSG:102752', '+title=NAD 1983 StatePlane Texas North Central FIPS 4202 Feet +proj=tmerc +lat_0=31.67 +lon_0=-98.50 +x_0=600000.0 +y_0=2000000.0 +k=0.999938 +a=6378137.0  +b=6356752.3141403 +to_meter=0.3048006096012192');//"+title=WGS 84 (long/lat) +proj=longlat +ellps=WGS84 +datum=WGS84 +units=degrees");
+	
+	var mapObj = new GMaps({
+		el: '#map',
+		lat: maplat,
+		lng: maplong,
+		zoom: mapZoom
+	  });
+	  
+	for(var i = 0; i < events.length; i++){
+		
+		var firstProjection = 'EPSG:102752';
+		var secondProjection = 'EPSG:4326';	
+		var latlong = proj4(firstProjection,secondProjection,[events[i].x_coordinate,events[i].y_coordinate]);
+
+		mapObj.addMarker({
+			  lat: latlong[1],
+			  lng: latlong[0],
+			  title: 'Evant type '+events[i].type,
+			  infoWindow: {
+				content: '<h4>Evant type: '+events[i].type+'</h4><p>'+events[i].dateofoccurrence+'</p><p>'+events[i].city+', '+events[i].state+'</p><p>Zip code: '+events[i].zipcode+'</p>',
+				maxWidth: 100
+			 }
+		});	
+		
+	}
+
+</script>
+</body>
+</html>
