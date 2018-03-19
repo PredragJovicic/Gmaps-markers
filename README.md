@@ -5,10 +5,12 @@
 ### Converting State Plane coordinate to lat/;ong
 
 Geocode Presentation
+
 The following table represents types of events (A,B or C) with date and Geo-data in State Plane coordinate
 format. Your task is to take this data and create and app that presents it in a Google Map format. (Feel free to
 demonstrate creativity on how the information is displayed i.e. time lapse or how the data could be interacted
 with.
+
 Zip Code City State X Coordinate Y Coordinate Date1 of Occurrence TYPE
 75211 DALLAS TX 2463017.564 6959380.819 11/20/16 0:00 A
 75211 DALLAS TX 2456852.474 6959267.606 1/16/16 0:00 A
