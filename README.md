@@ -11,7 +11,9 @@ format. Your task is to take this data and create and app that presents it in a 
 demonstrate creativity on how the information is displayed i.e. time lapse or how the data could be interacted
 with.
 
+'''
 Zip Code City State X Coordinate Y Coordinate Date1 of Occurrence TYPE
+
 75211 DALLAS TX 2463017.564 6959380.819 11/20/16 0:00 A
 75211 DALLAS TX 2456852.474 6959267.606 1/16/16 0:00 A
 75229 DALLAS TX 2464150.182 7007380.739 11/29/15 0:00 C
@@ -45,3 +47,4 @@ Zip Code City State X Coordinate Y Coordinate Date1 of Occurrence TYPE
 75228 DALLAS TX 2531617.436 6986626.106 12/3/15 0:00 C
 75228 DALLAS TX 2531686.547 6983664.845 11/25/16 0:00 A
 75202 DALLAS TX 2489807.043 6972793.145 1/1/15 0:00 C
+'''
